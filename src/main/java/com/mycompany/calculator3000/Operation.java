@@ -7,13 +7,25 @@ public class Operation {
     private Operation operationRight;
     private String operator;
     private double value;
-    public static final char[] OPERATIONS = {'+', '-', '*', '/'};
+    public static final char[] ARR_OPERATORS = {'+', '-', '*', '/','^'};
 
 
+    private boolean isOperator(char c) {
+        for (char op : ARR_OPERATORS) {
+            if (c == op) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isAddorSub(char c) {
+        return c == ARR_OPERATORS[0] || c == ARR_OPERATORS[1];
+    }
 
     private void checkBrackets(){
         int brackets=0;
-        for(char c : OPERATIONS) {
+        for(char c : ARR_OPERATORS) {
             if (c == '(') {
                 brackets++;
             }
@@ -54,6 +66,12 @@ public class Operation {
 
         System.out.println(str_Operation);
 
+        if (str_Operation.equals("")) {
+            value = 0;
+            return;
+        }
+
+
         //guarda el valor númerico si no hay operaciones
 
         try {
@@ -62,22 +80,19 @@ public class Operation {
         } catch (NumberFormatException e) {
             //no es un número aún
         }
-        if (str_Operation.matches("^[-+*/].*")) {
-            operationLeft = new Operation(0);
-            operationRight = new Operation(str_Operation.substring(1));
-            operator = String.valueOf(str_Operation.charAt(0));
-            return;
+        if (isAddorSub(str_Operation.charAt(0))){
+            str_Operation = "0" + str_Operation;
         }
 
         int brackets = 0;
-        int idx = 0;
-        for (char op : OPERATIONS) {
-            idx=0;
-            for (char c : str_Operation.toCharArray()) {
+        for (char op : ARR_OPERATORS) {
 
-                if ((c == op) && (brackets == 0)) {
-                    operationLeft = new Operation(str_Operation.substring(0, idx)); //corta por la izq.
-                    operationRight = new Operation(str_Operation.substring(idx + 1)); //corta por la der.
+            char[] charArray = str_Operation.toCharArray();
+            for (int i = charArray.length - 1; i >= 0; i--) {
+                char c = charArray[i];
+                if ((c == op) && (brackets == 0) && !isOperator(charArray[i - 1])) {
+                    operationLeft = new Operation(str_Operation.substring(0, i)); //corta por la izq.
+                    operationRight = new Operation(str_Operation.substring(i + 1)); //corta por la der.
                     operator = String.valueOf(c);
                     return;
                 } else if (c == '(') {
@@ -85,22 +100,12 @@ public class Operation {
                 } else if (c == ')') {
                     brackets--;
                 }
-                idx++;
             }
         }
+        throw new IllegalArgumentException("Operación no válida");
 
     }
 
-    public Operation(Operation operationLeft, Operation operationRight, String operator) {
-        this.operationLeft = operationLeft;
-        this.operationRight = operationRight;
-        this.operator = operator;
-
-    }
-
-    private Operation(double value) {
-        this.value = value;
-    }
 
 
 
@@ -120,6 +125,9 @@ public class Operation {
                 break;
             case "/":
                 value = operationLeft.getValue() / operationRight.getValue();
+                break;
+            case "^":
+                value = Math.pow(operationLeft.getValue(),operationRight.getValue());
                 break;
             default:
                 throw new IllegalArgumentException("Operador no válido");

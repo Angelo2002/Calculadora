@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculator3000.MainController">
+<AnchorPane prefHeight="355.0" prefWidth="580.0" stylesheets="@calculator_style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculator3000.MainController">
    <children>
       <GridPane layoutX="106.0" layoutY="37.0" prefHeight="294.0" prefWidth="375.0">
         <columnConstraints>
@@ -44,7 +44,7 @@
                </children>
             </GridPane>
             <Button fx:id="btn_equal" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#resolve" prefHeight="39.0" prefWidth="66.0" text="=" textAlignment="CENTER" GridPane.columnIndex="1" />
-            <TextField fx:id="equation" onAction="#verify_input" onKeyPressed="#verify_input" onKeyTyped="#verify_input" prefHeight="63.0" prefWidth="289.0" />
+            <TextField fx:id="equation" prefHeight="63.0" prefWidth="289.0" />
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,11 +61,14 @@
                   <Button fx:id="btn_mul" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text="*" GridPane.rowIndex="3" />
                   <Button fx:id="btn_sub" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button fx:id="btn_div" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text="÷" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="btn_AC" mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="AC" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefWidth="38.0" text="CA" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_AC" mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="AC" />
+                  <Button mnemonicParsing="false" prefWidth="38.0" text="CE" GridPane.columnIndex="1" />
+                  <Button maxWidth="38.0" mnemonicParsing="false" onAction="#type_on_screen" text="(" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text=")" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Button fx:id="btn_zero" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="84.0" text="0" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="55.0" text="^(  )" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

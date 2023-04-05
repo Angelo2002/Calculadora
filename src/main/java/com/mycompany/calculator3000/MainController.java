@@ -16,16 +16,20 @@ public class MainController {
 
     @FXML
     private void resolve() {
-        //take textfield input, solve it and display it in the textfield
-        String input = equation.getText();
-        input=input.replace("÷","/").replace(" ","");
-        //if there is a ( after a "-", multiply it by -1
+        try{
+            //take textfield input, solve it and display it in the textfield
+            String input = equation.getText();
+            input=input.replace("÷","/").replace(" ","");
+            Operation operation = new Operation(input);
+            System.out.println(operation.getOperator()); // TODO remover
+            double result = operation.getValue();
+            equation.setText(String.valueOf(result));
+
+        }catch (Exception e){
+            equation.setText("Error");
+        }
 
 
-        Operation operation = new Operation(input);
-        System.out.println(operation.getOperator()); // TODO remover
-        double result = operation.getValue();
-        equation.setText(String.valueOf(result));
 
     }
 
