@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,48 +8,25 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="355.0" prefWidth="580.0" stylesheets="@calculator_style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculator3000.MainController">
+<AnchorPane onKeyReleased="#key_pressed" prefHeight="348.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculator3000.MainController">
    <children>
-      <GridPane layoutX="106.0" layoutY="37.0" prefHeight="294.0" prefWidth="375.0">
+      <GridPane layoutX="54.0" layoutY="19.0" prefHeight="294.0" prefWidth="386.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="260.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="115.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="289.0" />
+          <ColumnConstraints halignment="CENTER" maxWidth="303.0" minWidth="10.0" prefWidth="97.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="188.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane GridPane.rowIndex="1">
+            <GridPane GridPane.halignment="CENTER" GridPane.rowIndex="1">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="btn_one" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="1" />
-                  <Button fx:id="btn_four" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="4" GridPane.rowIndex="1" />
-                  <Button fx:id="btn_seven" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="62.0" text="7" GridPane.rowIndex="2" />
-                  <Button fx:id="btn_two" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="2" GridPane.columnIndex="1" />
-                  <Button fx:id="btn_five" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="btn_eight" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="62.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="btn_six" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button fx:id="btn_three" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="3" GridPane.columnIndex="2" />
-                  <Button fx:id="btn_nine" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="62.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               </children>
-            </GridPane>
-            <Button fx:id="btn_equal" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#resolve" prefHeight="39.0" prefWidth="66.0" text="=" textAlignment="CENTER" GridPane.columnIndex="1" />
-            <TextField fx:id="equation" prefHeight="63.0" prefWidth="289.0" />
-            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -57,19 +35,34 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btn_sum" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="38.0" text="+" GridPane.rowIndex="2" />
-                  <Button fx:id="btn_mul" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text="*" GridPane.rowIndex="3" />
-                  <Button fx:id="btn_sub" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="btn_div" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text="÷" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="btn_AC" mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="AC" />
-                  <Button mnemonicParsing="false" prefWidth="38.0" text="CE" GridPane.columnIndex="1" />
-                  <Button maxWidth="38.0" mnemonicParsing="false" onAction="#type_on_screen" text="(" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#type_on_screen" prefWidth="38.0" text=")" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_one" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="1" />
+                  <Button fx:id="btn_four" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="4" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_seven" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="55.0" text="7" GridPane.rowIndex="2" />
+                  <Button fx:id="btn_two" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="2" GridPane.columnIndex="1" />
+                  <Button fx:id="btn_five" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_eight" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="55.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="btn_six" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_three" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="3" GridPane.columnIndex="2" />
+                  <Button fx:id="btn_nine" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="55.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="btn_zero" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="27.0" prefWidth="55.0" text="0" GridPane.rowIndex="3" />
+                  <Button maxWidth="44.0" mnemonicParsing="false" onAction="#type_on_screen" text="(" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#type_on_screen" prefWidth="44.0" text=")" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Button fx:id="btn_add" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="44.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_sub" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="44.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Button fx:id="btn_mul" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="44.0" text="×" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Button fx:id="btn_div" mnemonicParsing="false" onAction="#type_on_screen" prefWidth="44.0" text="÷" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#clear_entry" prefHeight="27.0" prefWidth="96.0" text="CE" GridPane.columnIndex="3" GridPane.columnSpan="2" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="27.0" prefWidth="44.0" text="^" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#type_on_screen" prefHeight="27.0" prefWidth="44.0" text="ANS" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="btn_zero" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="84.0" text="0" GridPane.rowIndex="2" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#type_on_screen" prefHeight="25.0" prefWidth="55.0" text="^(  )" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="equation" prefHeight="63.0" prefWidth="289.0" />
+            <Button fx:id="btn_equal" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#resolve" prefHeight="39.0" prefWidth="66.0" text="=" textAlignment="CENTER" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
+   <stylesheets>
+      <URL value="@calculator_style.css" />
+      <URL value="@calculator_style.css" />
+   </stylesheets>
 </AnchorPane>

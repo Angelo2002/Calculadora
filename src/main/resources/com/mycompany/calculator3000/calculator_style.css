@@ -1,0 +1,39 @@
+/* Style for buttons */
+.button {
+    -fx-background-color: #D3D3D3;
+    -fx-border-color: #000000;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-font-weight: bold;
+
+}
+
+/* Style for when button is pressed */
+.button:pressed {
+    -fx-background-color: #d9d9d9;
+    -fx-border-color: #666666;
+    -font-size : 20px;
+}
+
+/* Style for text fields */
+
+
+.text-field {
+    -fx-background-color: #FFFFE0;
+    -fx-background-radius: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-pref-height: 60px;
+    -fx-padding: 0;
+}
+
+/* Style for labels */
+.label {
+    -fx-font-size: 18pt;
+    -fx-text-fill: #000000;
+}
+
+/* Style for the background */
+.root {
+    -fx-background-color: #f2f2f2;
+}
