@@ -67,6 +67,7 @@ public class MainController {
         switch (keyEvent.getCode()){
             case ENTER:
                 btn_equal.fire();
+                equation.positionCaret(equation.getText().length());
                 break;
             case ESCAPE:
                 clear_entry();
