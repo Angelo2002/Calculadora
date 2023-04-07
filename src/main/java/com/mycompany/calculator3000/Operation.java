@@ -83,7 +83,7 @@ public class Operation {
             char[] charArray = str_Operation.toCharArray();
             //Para que el programa logre respetar la prioridad de los operadores, se recorre la operación de derecha a izquierda
             //y se busca el primer operador que no esté dentro de paréntesis, empezando por la suma. Pareciera contrario
-            //a lo usual. Pero es para que funcione como esperado.
+            //a lo usual, pero al ser "recursivo" debe pensarse de esta manera.
             for (int i = charArray.length - 1; i >= 0; i--) {
                 char c = charArray[i];
                 if ((c == op) && (parenthesis == 0) && !isOperator(charArray[i - 1])) {
@@ -107,6 +107,8 @@ public class Operation {
 
 
     //calcula el valor de la operación utilizando los valores de las operaciones izquierda y derecha
+    //Aquí toma importancaia la manera en la que se generaron las operaciones.
+    // Realmenete se calcula primero la operación más interna y a la izquierda, como lo hacemos normalmente.
     public void calculate() throws IllegalArgumentException {
         if (operationLeft == null) {
             return;
