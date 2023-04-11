@@ -20,13 +20,15 @@ public class MainController {
         try {
             String input = getInput();
             Operation operation = new Operation(input);
-
             // System.out.println(operation.getOperator()); // TODO remover
-
             ANS = operation.getValue();
-            equation.setText(String.valueOf(ANS));
+            if (ANS==Double.POSITIVE_INFINITY || ANS==Double.NEGATIVE_INFINITY){
+                equation.setText("Tiende a infinito");
+            }
+            else
+                equation.setText(String.valueOf(ANS));
         } catch (Exception e) {
-            equation.setText("Error");
+            equation.setText("Operación no válida");
         }
 
     }

@@ -7,10 +7,14 @@ public class Operation {
     private Operation operationRight;
     private String operator;
     private double value;
-    public static final char[] ARR_OPERATORS = {'+', '-', '*', '/','^'};
+    public static final char[] ARR_OPERATORS = {'+', '-', '*', '/'};
 
 
     public static boolean isOperator(char c) {
+        if (c == '^'){
+            return true;
+        }
+
         for (char op : ARR_OPERATORS) {
             if (c == op) {
                 return true;
@@ -23,9 +27,9 @@ public class Operation {
         return c == ARR_OPERATORS[0] || c == ARR_OPERATORS[1];
     }
 
-    private void checkParenthesis() throws IllegalArgumentException{
+    private void checkParenthesis(String str_Operation) throws IllegalArgumentException{
         int parenthesis=0;
-        for(char c : ARR_OPERATORS) {
+        for(char c : str_Operation.toCharArray()) {
             if (c == '(') {
                 parenthesis++;
             }
@@ -59,7 +63,7 @@ public class Operation {
 
     public Operation(String str_Operation) throws IllegalArgumentException {
         str_Operation = removeUselessParenthesis(str_Operation);
-        checkParenthesis();
+        checkParenthesis(str_Operation);
         //System.out.println(str_Operation);
         if (str_Operation.equals("")) {
             value = 0;
@@ -78,32 +82,72 @@ public class Operation {
             str_Operation = "0" + str_Operation;
         }
 
+
+        int i = getFirstOperatorIndex(str_Operation);
+        if (i == -1) {
+            throw new IllegalArgumentException("Operación no válida");
+
+        }
+        assignValues(str_Operation, i);
+
+
+
+    }
+
+    //get index of the first operator that is not inside parenthesis
+    private int getFirstOperatorIndex(String str_Operation){
+        if (str_Operation.isEmpty()) {
+            return -1;
+        }
+
         int parenthesis = 0;
+        char[] charArray = str_Operation.toCharArray();
         for (char op : ARR_OPERATORS) {
-            char[] charArray = str_Operation.toCharArray();
+
             //Para que el programa logre respetar la prioridad de los operadores, se recorre la operación de derecha a izquierda
             //y se busca el primer operador que no esté dentro de paréntesis, empezando por la suma. Pareciera contrario
             //a lo usual, pero al ser "recursivo" debe pensarse de esta manera.
-            for (int i = charArray.length - 1; i >= 0; i--) {
+            try{
+            for (int i = charArray.length - 1; i > 0; i--) {
                 char c = charArray[i];
                 if ((c == op) && (parenthesis == 0) && !isOperator(charArray[i - 1])) {
-                    operationLeft = new Operation(str_Operation.substring(0, i)); //corta por la izq.
-                    operationRight = new Operation(str_Operation.substring(i + 1)); //corta por la der.
-                    operator = String.valueOf(c);
-                    return;
+                    return i;
                 } else if (c == '(') {
                     parenthesis++;
                 } else if (c == ')') {
                     parenthesis--;
                 }
             }
+            }catch (ArrayIndexOutOfBoundsException e){
+                throw new IllegalArgumentException("Operación no válida");
+            }
+
         }
-
-        //si no se encuentra un operador, se lanza una excepción
-        throw new IllegalArgumentException("Operación no válida");
-
+        //los exponentes se calculan desde arriba hacia abajo(2^2^3 = 2^(2^3) = 2^8), por lo que se recorre el string de izquierda a derecha
+        //para que al operar, el primer exponente en ser calculado sea el de más arriba/derecha.
+        parenthesis=0;
+        try {
+            for (int i = 0; i < charArray.length - 1; i++) {
+                char c = charArray[i];
+                if ((c == '^') && (parenthesis == 0) && !isOperator(charArray[i + 1])) {
+                    return i;
+                } else if (c == '(') {
+                    parenthesis++;
+                } else if (c == ')') {
+                    parenthesis--;
+                }
+            }
+        }catch (ArrayIndexOutOfBoundsException e){
+            throw new IllegalArgumentException("Operación no válida");
+        }
+        return -1;
     }
 
+    private void assignValues(String str_Operation, int operatorIndex) {
+        operationLeft = new Operation(str_Operation.substring(0, operatorIndex)); //corta por la izq.
+        operationRight = new Operation(str_Operation.substring(operatorIndex + 1)); //corta por la der.
+        operator = String.valueOf(str_Operation.charAt(operatorIndex)); //guarda el operador
+    }
 
 
     //calcula el valor de la operación utilizando los valores de las operaciones izquierda y derecha
@@ -137,9 +181,7 @@ public class Operation {
         calculate();
         return value;
     }
-
     public String getOperator() {
         return operator;
     }
-
 }

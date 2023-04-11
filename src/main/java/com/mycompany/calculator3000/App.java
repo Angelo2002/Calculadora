@@ -10,6 +10,9 @@ import java.io.IOException;
 
 /**
  * JavaFX App
+ * Angelo Marín Granados
+ * Perdón por el código espagueti en Operation.java
+ * Ya no sé como refactorizarlo, y funciona como está.
  */
 public class App extends Application {
 
@@ -24,6 +27,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main" + ".fxml"));
         return fxmlLoader.load();
     }
+    
 
     public static void main(String[] args) {
         launch();
