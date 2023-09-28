@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
 public class MainController {
+
     double ANS = 0;
 
     @FXML
@@ -53,6 +54,7 @@ public class MainController {
     }
 
 
+
     //Borra el último caracter del TextField si no es un operador, parentesis o no es un número
     //Además revisa la tecla Enter y Escape para que funcionen como esperado
     @FXML
@@ -61,7 +63,7 @@ public class MainController {
         if (text.length() > 0) {
             char last_char = text.charAt(text.length() - 1);
             if (!Character.isDigit(last_char) && !(last_char == '.'))
-                if (!Operation.isOperator(last_char) && last_char != '(' && last_char != ')') {
+                if (Operation.notAnOperator(last_char) && last_char != '(' && last_char != ')') {
                     equation.setText(text.substring(0, text.length() - 1));
                     equation.positionCaret(equation.getText().length());
                 }

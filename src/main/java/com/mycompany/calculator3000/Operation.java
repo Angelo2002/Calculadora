@@ -10,17 +10,17 @@ public class Operation {
     public static final char[] ARR_OPERATORS = {'+', '-', '*', '/'};
 
 
-    public static boolean isOperator(char c) {
+    public static boolean notAnOperator(char c) {
         if (c == '^'){
-            return true;
+            return false;
         }
 
         for (char op : ARR_OPERATORS) {
             if (c == op) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     private boolean isAddOrSub(char c) {
@@ -64,8 +64,8 @@ public class Operation {
     public Operation(String str_Operation) throws IllegalArgumentException {
         str_Operation = removeUselessParenthesis(str_Operation);
         checkParenthesis(str_Operation);
-        //System.out.println(str_Operation);
-        if (str_Operation.equals("")) {
+        System.out.println(str_Operation);
+        if (str_Operation.isEmpty()) {
             value = 0;
             return;
         }
@@ -110,7 +110,7 @@ public class Operation {
             try{
             for (int i = charArray.length - 1; i > 0; i--) {
                 char c = charArray[i];
-                if ((c == op) && (parenthesis == 0) && !isOperator(charArray[i - 1])) {
+                if ((c == op) && (parenthesis == 0) && notAnOperator(charArray[i - 1])) {
                     return i;
                 } else if (c == '(') {
                     parenthesis++;
@@ -129,7 +129,7 @@ public class Operation {
         try {
             for (int i = 0; i < charArray.length - 1; i++) {
                 char c = charArray[i];
-                if ((c == '^') && (parenthesis == 0) && !isOperator(charArray[i + 1])) {
+                if ((c == '^') && (parenthesis == 0) && notAnOperator(charArray[i + 1])) {
                     return i;
                 } else if (c == '(') {
                     parenthesis++;
